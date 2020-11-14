@@ -1,12 +1,14 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { Header } from 'native-base';
 import React from 'react';
 import MainScreen from './MainScreen';
 
-/* @jest-environment jsdom */
-
 function setup(): ShallowWrapper {
-  return shallow(<MainScreen />);
+  return shallow(
+    <NavigationContainer>
+      <MainScreen />
+    </NavigationContainer>);
 }
 
 describe('<MainScreen />', () => {
@@ -21,9 +23,4 @@ describe('<MainScreen />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('displays loader', () => {
-
-    expect(wrapper.find(Header)).toHaveLength(1);
-
-  })
 });

@@ -19,6 +19,15 @@ export type PokemonSprites = {
   back_shiny_female: 'string';
 };
 
+export type PokemonStat = {
+  stat: {
+    name: string;
+    url: string;
+  };
+  effort: number;
+  base_stat: number;
+};
+
 export type Pokemon = {
   name: string;
   url?: string;
@@ -27,4 +36,5 @@ export type Pokemon = {
   height: number;
   weight: number;
   sprites: PokemonSprites;
+  stats: PokemonStat[];
 };

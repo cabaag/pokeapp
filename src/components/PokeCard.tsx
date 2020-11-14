@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
 const PokeCard: React.FC<PokeCardProps> = ({ pokemon }: PokeCardProps) => {
   return (
-    <Card>
+    <Card style={{ height: '100%', margin: 8 }}>
       <CardItem>
         <Body style={styles.body}>
           {

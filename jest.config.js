@@ -1,16 +1,28 @@
+
 module.exports = {
-  setupFilesAfterEnv: ['./setup-tests.js'],
   preset: "jest-expo",
-  transformIgnorePatterns: [
-    "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)",
-    "/node_modules/(?!(jest-)?@codler)"
+  moduleDirectories: [
+    "node_modules",
+    "src"
   ],
+  transform: {
+    "^.+\\.ts?$": "ts-jest",
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+  },
+  transformIgnorePatterns: [],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
   collectCoverageFrom: [
-    "**/*.{js,jsx}",
+    "src/**/*.{js,jsx,ts,tsx}",
     "!**/coverage/**",
     "!**/node_modules/**",
     "!**/babel.config.js",
     "!**/jest.setup.js"
-  ]
+  ],
+  setupFilesAfterEnv: [
+    "./setup-tests.js"
+  ],
+  roots: ['./src'],
+  testEnvironment: 'jsdom',
 };

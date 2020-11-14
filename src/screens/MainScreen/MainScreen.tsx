@@ -1,12 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
-import { Body, Button, Container, Content, Header, Icon, Input, Item, Left, Right, Spinner, Text, Switch, Picker } from 'native-base';
+import { Body, Button, Container, Content, Header, Icon, Input, Item, Spinner, Text } from 'native-base';
 import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import LangPicker from '../../components/LangPicker';
+import Paginator from '../../components/Paginator/Paginator';
 import PokeCard from '../../components/PokeCard';
 import { Pokemon, PokemonListResponse } from '../../types/Pokemon';
-import I18n from '../../utils/i18n';
 
 
 const styles = StyleSheet.create({
@@ -20,44 +22,34 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
-    width: Dimensions.get('window').width
+    justifyContent: 'flex-start',
+    alignContent: 'stretch',
+    alignItems: 'stretch',
+    width: Dimensions.get('window').width,
+    paddingLeft: 8
   },
   col: {
     width: (Dimensions.get('window').width - 16) / 3,
     flex: 1
   },
-  paginator: {
-    flexDirection: "row",
-    flex: 1,
-    left: 0,
-    right: 0,
-    justifyContent: 'space-between',
-  }
 })
 
 export default function MainScreen(): React.ReactElement {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const limit = 50;
-  const [currentPage, setCurrentPage] = useState(0);
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  const [hasNext, setHasNext] = useState(false);
-  const [hasPrevious, setHasPrevious] = useState(false);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
-  const [language, setLanguage] = useState('en');
 
   const fetchList = useCallback((page: number) => {
-    setCurrentPage(page);
-    setLoading(true);
     setPokemons([]);
+    setLoading(true);
     Axios.get<PokemonListResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${page * limit}`)
       .then(({ data }) => {
 
         setCount(data.count);
-        setHasNext(data.next !== null)
-        setHasPrevious(data.previous !== null)
         setPokemons(data.results as Pokemon[])
         setLoading(false)
 
@@ -75,7 +67,7 @@ export default function MainScreen(): React.ReactElement {
   }, [])
 
   useEffect(() => {
-    fetchList(1);
+    fetchList(0);
   }, []);
 
 
@@ -91,43 +83,19 @@ export default function MainScreen(): React.ReactElement {
     setSearch(newSearch)
   }, [])
 
-  const handleChangeLang = useCallback((lang) => {
-    I18n.locale = lang;
-    setLanguage(lang);
-  }, [])
-
   return (
     <Container>
       <Header>
-        <Left />
-        <Body style={{ width: '100%', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Body style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Image source={require('../../assets/images/pokemon.png')} style={styles.logo} />
         </Body>
-        <Right>
-          <Picker
-            iosHeader="Select your language"
-            iosIcon={(
-              <Icon
-                name="arrow-dropdown-circle"
-                style={{ color: "#007aff", fontSize: 25 }}
-              />
-            )}
-            mode="dropdown"
-            onValueChange={handleChangeLang}
-            selectedValue={language}
-            style={{ color: "#ffffff", fontSize: 25, width: 50 }}
-          >
-            <Picker.Item label="English" value="en" />
-            <Picker.Item label="Spanish" value="es" />
-          </Picker>
-        </Right>
       </Header>
       <Header rounded searchBar>
         <Item>
           <Icon name="ios-search" />
           <Input
-            onChangeText={text => handleSearch(text)}
-            placeholder={I18n.t('search')}
+            onChangeText={handleSearch}
+            placeholder={t('search')}
           />
         </Item>
         <Button transparent>
@@ -135,6 +103,8 @@ export default function MainScreen(): React.ReactElement {
         </Button>
       </Header>
       <Content>
+        <LangPicker />
+
         <View style={styles.grid}>
           {
             loading && pokemons.length ?
@@ -150,18 +120,7 @@ export default function MainScreen(): React.ReactElement {
                 )
           }
         </View>
-        <View style={styles.paginator}>
-          <Button disabled={!hasPrevious || loading} onPress={() => handleChangePage(currentPage - 1)}>
-            <Text>
-              {I18n.t('previous')}
-            </Text>
-          </Button>
-          <Button disabled={!hasNext || loading} onPress={() => handleChangePage(currentPage + 1)}>
-            <Text>
-              {I18n.t('next')}
-            </Text>
-          </Button>
-        </View>
+        <Paginator count={count} loading={loading} onChangePage={handleChangePage} />
       </Content>
     </Container>
   );

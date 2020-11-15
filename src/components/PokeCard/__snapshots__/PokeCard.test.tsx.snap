@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PokeCard /> matchs snapshot 1`] = `
+<Styled(Card)
+  style={
+    Object {
+      "height": "100%",
+      "margin": 8,
+    }
+  }
+>
+  <Styled(CardItem)>
+    <Styled(Body)
+      style={
+        Object {
+          "alignContent": "center",
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Styled(Spinner) />
+      <Styled(Text)
+        style={
+          Object {
+            "textTransform": "capitalize",
+          }
+        }
+      >
+        test
+      </Styled(Text)>
+    </Styled(Body)>
+  </Styled(CardItem)>
+</Styled(Card)>
+`;

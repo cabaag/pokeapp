@@ -24,26 +24,6 @@ exports[`<Paginator /> renders correctly 1`] = `
   </Styled(Button)>
   <Styled(Button)
     disabled={false}
-    key="-5"
-    onPress={[Function]}
-    test-id="page-button"
-  >
-    <Styled(Text)>
-      -4
-    </Styled(Text)>
-  </Styled(Button)>
-  <Styled(Button)
-    disabled={false}
-    key="-4"
-    onPress={[Function]}
-    test-id="page-button"
-  >
-    <Styled(Text)>
-      -3
-    </Styled(Text)>
-  </Styled(Button)>
-  <Styled(Button)
-    disabled={false}
     key="-3"
     onPress={[Function]}
     test-id="page-button"
@@ -74,6 +54,26 @@ exports[`<Paginator /> renders correctly 1`] = `
   </Styled(Button)>
   <Styled(Button)
     disabled={true}
+    key="0"
+    onPress={[Function]}
+    test-id="page-button"
+  >
+    <Styled(Text)>
+      1
+    </Styled(Text)>
+  </Styled(Button)>
+  <Styled(Button)
+    disabled={false}
+    key="1"
+    onPress={[Function]}
+    test-id="page-button"
+  >
+    <Styled(Text)>
+      2
+    </Styled(Text)>
+  </Styled(Button)>
+  <Styled(Button)
+    disabled={false}
     onPress={[Function]}
     test-id="next"
   >

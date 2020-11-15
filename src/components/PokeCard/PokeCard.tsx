@@ -1,7 +1,7 @@
 import { Body, Card, CardItem, Text, Spinner, Row } from 'native-base';
 import { Image, StyleSheet } from 'react-native';
 import React, { memo } from 'react';
-import { Pokemon } from '../types/Pokemon';
+import { Pokemon } from '../../types/Pokemon';
 
 export interface PokeCardProps {
   pokemon: Pokemon
@@ -33,9 +33,6 @@ const PokeCard: React.FC<PokeCardProps> = ({ pokemon }: PokeCardProps) => {
           <Text style={{ textTransform: 'capitalize' }}>
             {pokemon.name}
           </Text>
-
-          <Row />
-
         </Body>
       </CardItem>
     </Card>

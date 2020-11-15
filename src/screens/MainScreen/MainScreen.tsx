@@ -5,9 +5,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import LangPicker from '../../components/LangPicker';
+import LangPicker from '../../components/LangPicker/LangPicker';
 import Paginator from '../../components/Paginator/Paginator';
-import PokeCard from '../../components/PokeCard';
+import PokeCard from '../../components/PokeCard/PokeCard';
 import { Pokemon, PokemonListResponse } from '../../types/Pokemon';
 
 

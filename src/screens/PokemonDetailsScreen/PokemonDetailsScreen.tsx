@@ -3,7 +3,8 @@ import Axios from 'axios';
 import { Card, Col, Container, Content, Row, Text, Header, Button, Left, Icon, Body, Spinner, Right } from 'native-base';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
+import typesMapper from 'utils/typesMapper';
 import { Pokemon } from '../../types/Pokemon';
 import { RootStackParamList } from '../../types/Stacks';
 
@@ -25,6 +26,13 @@ const styles = StyleSheet.create({
     height: 1,
     flex: 1,
     borderRadius: 10,
+
+  },
+  badge: {
+    borderRadius: 50,
+    width: 10,
+    height: 10,
+    margin: 10,
   }
 
 })
@@ -59,6 +67,7 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
             <Body style={{ alignItems: 'flex-start', paddingRight: 20, paddingLeft: 20 }}>
               <Row>
                 <Col>
+
                   {
                     pokemon?.sprites?.front_default ?
                       <Image source={{ uri: pokemon?.sprites.front_default }} style={styles.sprite} />
@@ -87,6 +96,17 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
                     {pokemon?.weight / 10}
                     kg
                   </Text>
+                  <Row>
+                    {pokemon?.types?.map(type => (
+                      <View
+                        key={type.slot}
+                        style={{
+                          ...styles.badge,
+                          backgroundColor: typesMapper(type.type.name) as string
+                        }}
+                      />
+                    ))}
+                  </Row>
                 </Col>
               </Row>
               <Row>

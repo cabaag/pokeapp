@@ -20,6 +20,12 @@ const PokemonMock: Pokemon = {
     },
   ],
   id: 0,
+  types: [{
+    slot: 1,
+    type: {
+      name: 'fire',
+    }
+  }]
 };
 
 export { PokemonMock };

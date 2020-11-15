@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
   },
   col: {
     width: (Dimensions.get('window').width - 16) / 3,
-    flex: 1
+    flex: 1,
+    paddingBottom: 8,
   },
 })
 

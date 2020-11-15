@@ -1,11 +1,13 @@
+type NamedAPIResource = {
+  name: string;
+  url?: string;
+};
+
 export type PokemonListResponse = {
   count: number;
   next: string;
   previous: string;
-  results: {
-    name: string;
-    url?: string;
-  }[];
+  results: NamedAPIResource[];
 };
 
 export type PokemonSprites = {
@@ -14,12 +16,14 @@ export type PokemonSprites = {
 };
 
 export type PokemonStat = {
-  stat: {
-    name: string;
-    url: string;
-  };
+  stat: NamedAPIResource;
   effort: number;
   base_stat: number;
+};
+
+export type PokemonType = {
+  slot: number;
+  type: NamedAPIResource;
 };
 
 export type Pokemon = {
@@ -31,4 +35,5 @@ export type Pokemon = {
   weight: number;
   sprites: PokemonSprites;
   stats: PokemonStat[];
+  types: PokemonType[];
 };

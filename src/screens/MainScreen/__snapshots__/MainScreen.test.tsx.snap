@@ -1,31 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MainScreen /> renders correctly 1`] = `
-<ContextProvider
-  value={
-    Object {
-      "options": undefined,
-    }
-  }
->
-  <ThemeProvider
-    value={
-      Object {
-        "colors": Object {
-          "background": "rgb(242, 242, 242)",
-          "border": "rgb(216, 216, 216)",
-          "card": "rgb(255, 255, 255)",
-          "notification": "rgb(255, 59, 48)",
-          "primary": "rgb(0, 122, 255)",
-          "text": "rgb(28, 28, 30)",
-        },
-        "dark": false,
+exports[`<MainScreen /> matchs snapshot 1`] = `
+<Styled(Container)>
+  <Styled(Header)>
+    <Styled(Body)
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
       }
-    }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "height": 60,
+            "width": 140,
+          }
+        }
+      />
+    </Styled(Body)>
+  </Styled(Header)>
+  <Styled(Header)
+    rounded={true}
+    searchBar={true}
   >
-    <ForwardRef(BaseNavigationContainer)>
-      <MainScreen />
-    </ForwardRef(BaseNavigationContainer)>
-  </ThemeProvider>
-</ContextProvider>
+    <Styled(Item)>
+      <Styled(Icon)
+        name="ios-search"
+      />
+      <Styled(Input)
+        onChangeText={[Function]}
+        placeholder="search"
+      />
+    </Styled(Item)>
+    <Styled(Button)
+      transparent={true}
+    >
+      <Styled(Text)>
+        search
+      </Styled(Text)>
+    </Styled(Button)>
+  </Styled(Header)>
+  <Styled(Content)>
+    <Memo(LangPicker) />
+    <View
+      style={
+        Object {
+          "alignContent": "stretch",
+          "alignItems": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "flex-start",
+          "paddingLeft": 8,
+          "width": 750,
+        }
+      }
+    />
+    <Memo(Paginator)
+      count={0}
+      loading={false}
+      onChangePage={[Function]}
+    />
+  </Styled(Content)>
+</Styled(Container)>
 `;

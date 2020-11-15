@@ -99,7 +99,7 @@ export default function MainScreen(): React.ReactElement {
           />
         </Item>
         <Button transparent>
-          <Text>Search</Text>
+          <Text>{t('search')}</Text>
         </Button>
       </Header>
       <Content>

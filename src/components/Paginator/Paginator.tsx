@@ -37,14 +37,14 @@ const Paginator: React.FC<PaginatorProps> = ({
 
   const renderButtons = useCallback(() => {
     const interval = 5;
-    const minPage: number = Math.min(...[currentPage, lastPage - interval])
+    const minPage: number = Math.min(...[currentPage, Math.abs(lastPage - interval)])
     const maxPage: number = Math.min(...[currentPage + interval, lastPage])
     const buttons = [];
 
     // eslint-disable-next-line no-plusplus
     for (let i = minPage; i < maxPage; i++) {
       buttons.push(
-        <Button disabled={currentPage === i || loading} key={i} onPress={() => handleChangePage(i)} test-id="page-button">
+        <Button disabled={currentPage === i || loading} key={i} onPress={() => handleChangePage(i)} test-id={`page-button-${i}`}>
           <Text>
             {i + 1}
           </Text>

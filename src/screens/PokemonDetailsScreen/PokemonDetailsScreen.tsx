@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
 
 
 export interface PokemonDetailsScreenProps {
-  pokemon: Pokemon;
   route: PokemonDetaulsScreenRouteProp;
 }
 
@@ -42,13 +41,11 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
 
     const { pokemon } = route.params;
 
-    console.log(pokemon.stats);
-
     return (
       <Container>
         <Header style={{ flexDirection: 'row' }}>
           <Left style={{ flex: 1 }}>
-            <Button onPress={() => navigation.goBack()} transparent>
+            <Button data-test="goBack" onPress={() => navigation.goBack()} transparent>
               <Icon name='arrow-back' />
             </Button>
           </Left>
@@ -64,14 +61,14 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
                 <Col>
                   {
                     pokemon?.sprites?.front_default ?
-                      <Image source={{ uri: pokemon.sprites.front_default }} style={styles.sprite} />
+                      <Image source={{ uri: pokemon?.sprites.front_default }} style={styles.sprite} />
                       : <Spinner />
                   }
                 </Col>
                 <Col style={{ alignContent: 'flex-start', alignItems: 'flex-start', paddingTop: 20 }}>
                   <Text>
                     #
-                    {pokemon.id}
+                    {pokemon?.id}
                   </Text>
                   <Text style={{ fontWeight: 'bold', textTransform: 'capitalize' }}>
                     {pokemon?.name}
@@ -80,14 +77,14 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
                     {t('height')}
                     :
                     {' '}
-                    {pokemon.height / 10}
+                    {pokemon?.height / 10}
                     m
                   </Text>
                   <Text>
                     {t('weight')}
                     :
                     {' '}
-                    {pokemon.weight / 10}
+                    {pokemon?.weight / 10}
                     kg
                   </Text>
                 </Col>
@@ -103,7 +100,7 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
               </Row>
               <Col style={{ paddingTop: 10, paddingBottom: 10 }}>
                 {
-                  pokemon.stats.map(stat => (
+                  pokemon?.stats.map(stat => (
                     <Col key={stat.stat.name}>
                       <Row>
                         <Text style={{ fontWeight: 'bold' }}>

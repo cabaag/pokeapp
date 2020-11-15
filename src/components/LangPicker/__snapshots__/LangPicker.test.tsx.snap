@@ -1,3 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<LangPicker /> matchs snapshot 1`] = `undefined`;
+exports[`<LangPicker /> matchs snapshot 1`] = `
+<Styled(PickerNB)
+  iosHeader="select_lang"
+  iosIcon={
+    <Styled(Icon)
+      name="arrow-dropdown-circle"
+    />
+  }
+  mode="dropdown"
+  onValueChange={[Function]}
+  selectedValue="en"
+  style={
+    Object {
+      "color": "#000",
+    }
+  }
+>
+  <Item
+    label="english"
+    value="en"
+  />
+  <Item
+    label="spanish"
+    value="es"
+  />
+</Styled(PickerNB)>
+`;

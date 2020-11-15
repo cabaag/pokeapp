@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PokemonDetailsScreen /> matchs snapshot 1`] = `
+<Styled(Container)>
+  <Styled(Header)
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Styled(Left)
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Styled(Button)
+        data-test="goBack"
+        onPress={[Function]}
+        transparent={true}
+      >
+        <Styled(Icon)
+          name="arrow-back"
+        />
+      </Styled(Button)>
+    </Styled(Left)>
+    <Styled(Body)
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "height": 60,
+            "width": 140,
+          }
+        }
+      />
+    </Styled(Body)>
+    <Styled(Right)
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+  </Styled(Header)>
+  <Styled(Content)
+    padder={true}
+  >
+    <Styled(Card)>
+      <Styled(Body)
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "paddingLeft": 20,
+            "paddingRight": 20,
+          }
+        }
+      >
+        <RowNB>
+          <ColumnNB>
+            <Styled(Spinner) />
+          </ColumnNB>
+          <ColumnNB
+            style={
+              Object {
+                "alignContent": "flex-start",
+                "alignItems": "flex-start",
+                "paddingTop": 20,
+              }
+            }
+          >
+            <Styled(Text)>
+              #
+              0
+            </Styled(Text)>
+            <Styled(Text)
+              style={
+                Object {
+                  "fontWeight": "bold",
+                  "textTransform": "capitalize",
+                }
+              }
+            >
+              test
+            </Styled(Text)>
+            <Styled(Text)>
+              height
+              :
+               
+              1
+              m
+            </Styled(Text)>
+            <Styled(Text)>
+              weight
+              :
+               
+              1
+              kg
+            </Styled(Text)>
+          </ColumnNB>
+        </RowNB>
+        <RowNB>
+          <RowNB
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "flexDirection": "row",
+              }
+            }
+          >
+            <ColumnNB
+              style={
+                Object {
+                  "backgroundColor": "#ddd",
+                  "borderRadius": 10,
+                  "flex": 1,
+                  "height": 1,
+                }
+              }
+            />
+            <Styled(Text)
+              style={
+                Object {
+                  "fontSize": 20,
+                }
+              }
+            >
+              stadistics
+            </Styled(Text)>
+            <ColumnNB
+              style={
+                Object {
+                  "backgroundColor": "#ddd",
+                  "borderRadius": 10,
+                  "flex": 1,
+                  "height": 1,
+                }
+              }
+            />
+          </RowNB>
+        </RowNB>
+        <ColumnNB
+          style={
+            Object {
+              "paddingBottom": 10,
+              "paddingTop": 10,
+            }
+          }
+        >
+          <ColumnNB
+            key="stat test"
+          >
+            <RowNB>
+              <Styled(Text)
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                stat test
+              </Styled(Text)>
+              <Styled(Text)>
+                :
+                 
+                10
+              </Styled(Text)>
+            </RowNB>
+          </ColumnNB>
+        </ColumnNB>
+      </Styled(Body)>
+    </Styled(Card)>
+  </Styled(Content)>
+</Styled(Container)>
+`;

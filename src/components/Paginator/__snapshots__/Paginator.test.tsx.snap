@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Paginator /> renders correctly 1`] = `
+exports[`<Paginator /> matchs snapshot 1`] = `
 <View
   style={
     Object {
@@ -23,40 +23,10 @@ exports[`<Paginator /> renders correctly 1`] = `
     </Styled(Text)>
   </Styled(Button)>
   <Styled(Button)
-    disabled={false}
-    key="-3"
-    onPress={[Function]}
-    test-id="page-button"
-  >
-    <Styled(Text)>
-      -2
-    </Styled(Text)>
-  </Styled(Button)>
-  <Styled(Button)
-    disabled={false}
-    key="-2"
-    onPress={[Function]}
-    test-id="page-button"
-  >
-    <Styled(Text)>
-      -1
-    </Styled(Text)>
-  </Styled(Button)>
-  <Styled(Button)
-    disabled={false}
-    key="-1"
-    onPress={[Function]}
-    test-id="page-button"
-  >
-    <Styled(Text)>
-      0
-    </Styled(Text)>
-  </Styled(Button)>
-  <Styled(Button)
     disabled={true}
     key="0"
     onPress={[Function]}
-    test-id="page-button"
+    test-id="page-button-0"
   >
     <Styled(Text)>
       1
@@ -66,10 +36,40 @@ exports[`<Paginator /> renders correctly 1`] = `
     disabled={false}
     key="1"
     onPress={[Function]}
-    test-id="page-button"
+    test-id="page-button-1"
   >
     <Styled(Text)>
       2
+    </Styled(Text)>
+  </Styled(Button)>
+  <Styled(Button)
+    disabled={false}
+    key="2"
+    onPress={[Function]}
+    test-id="page-button-2"
+  >
+    <Styled(Text)>
+      3
+    </Styled(Text)>
+  </Styled(Button)>
+  <Styled(Button)
+    disabled={false}
+    key="3"
+    onPress={[Function]}
+    test-id="page-button-3"
+  >
+    <Styled(Text)>
+      4
+    </Styled(Text)>
+  </Styled(Button)>
+  <Styled(Button)
+    disabled={false}
+    key="4"
+    onPress={[Function]}
+    test-id="page-button-4"
+  >
+    <Styled(Text)>
+      5
     </Styled(Text)>
   </Styled(Button)>
   <Styled(Button)

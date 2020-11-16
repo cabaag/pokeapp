@@ -20,6 +20,20 @@ exports[`<PokeCard /> matchs snapshot 1`] = `
         }
       }
     >
+      <RowNB>
+        <View
+          key="1"
+          style={
+            Object {
+              "backgroundColor": "#AB1F23",
+              "borderRadius": 50,
+              "height": 10,
+              "margin": 10,
+              "width": 10,
+            }
+          }
+        />
+      </RowNB>
       <Styled(Spinner) />
       <Styled(Text)
         style={

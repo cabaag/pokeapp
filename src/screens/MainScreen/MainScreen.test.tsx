@@ -1,7 +1,6 @@
 import { shallow, ShallowWrapper } from 'enzyme';
 import { Input } from 'native-base';
 import React from 'react';
-import LangPicker from '../../components/LangPicker/LangPicker';
 import Paginator from '../../components/Paginator/Paginator';
 import MainScreen from './MainScreen';
 
@@ -32,10 +31,6 @@ describe.only('<MainScreen />', () => {
   it('handle search', () => {
     const input = wrapper.find(Input);
     input.simulate('changeText', 'test');
-  })
-
-  it('contains LangPicker', () => {
-    expect(wrapper.find(LangPicker)).toHaveLength(1);
   })
 
   it('contains Paginator', () => {

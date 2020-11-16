@@ -1,23 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
-import { Body, Button, Container, Content, Header, Icon, Input, Item, Spinner, Text } from 'native-base';
+import { Button, Container, Content, Header, Icon, Input, Item, Row, Spinner, Text } from 'native-base';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import LangPicker from '../../components/LangPicker/LangPicker';
 import Paginator from '../../components/Paginator/Paginator';
 import PokeCard from '../../components/PokeCard/PokeCard';
 import { Pokemon, PokemonListResponse } from '../../types/Pokemon';
 
-
 const styles = StyleSheet.create({
-  logo: {
-    height: 60,
-    width: 140,
-    flex: 1,
-    alignItems: 'center',
-  },
   grid: {
     flex: 1,
     flexDirection: 'row',
@@ -47,6 +39,7 @@ export default function MainScreen(): React.ReactElement {
   const fetchList = useCallback((page: number) => {
     setPokemons([]);
     setLoading(true);
+
     Axios.get<PokemonListResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${page * limit}`)
       .then(({ data }) => {
 
@@ -61,9 +54,11 @@ export default function MainScreen(): React.ReactElement {
               setPokemons([...pokemons])
             })
         })
-        Promise.all(queries).finally(() => {
-          setLoading(false)
-        });
+        Promise.all(queries)
+          .catch(e => console.log(e))
+          .finally(() => {
+            setLoading(false)
+          });
       })
   }, [])
 
@@ -86,11 +81,6 @@ export default function MainScreen(): React.ReactElement {
 
   return (
     <Container>
-      <Header>
-        <Body style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../assets/images/pokemon.png')} style={styles.logo} />
-        </Body>
-      </Header>
       <Header rounded searchBar>
         <Item>
           <Icon name="ios-search" />
@@ -104,12 +94,13 @@ export default function MainScreen(): React.ReactElement {
         </Button>
       </Header>
       <Content>
-        <LangPicker />
-
         <View style={styles.grid}>
           {
-            loading && pokemons.length ?
-              <Spinner /> :
+            loading || pokemons.length ? (
+              <Row style={{ justifyContent: 'center' }}>
+                <Spinner size={80} />
+              </Row>
+            ) :
               pokemons
                 .filter(p => p?.name.toLowerCase().includes(search.toLowerCase()))
                 .map(pokemon =>

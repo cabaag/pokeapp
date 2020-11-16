@@ -6,6 +6,7 @@ export default {
     screens: {
       MainScreen: 'main',
       PokemonDetailsScreen: 'pokemonDetails',
+      SettingsScreen: 'settings',
       NotFoundScreen: '*',
     },
   },

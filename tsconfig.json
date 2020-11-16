@@ -18,6 +18,7 @@
       "*": ["src/*"],
       "tests": ["tests/*"],
       "@components/*": ["./src/components/*"],
+      "@screens/*": ["./src/screens/*"],
     },
   },
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]

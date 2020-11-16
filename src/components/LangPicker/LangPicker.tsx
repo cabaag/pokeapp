@@ -21,8 +21,10 @@ const LangPicker: React.FC = () => {
       )}
       mode="dropdown"
       onValueChange={handleChangeLang}
+      placeholder={t("select_lang")}
       selectedValue={language}
-      style={{ color: '#000' }}
+      
+
     >
       <Picker.Item label={t("english")} value="en" />
       <Picker.Item label={t("spanish")} value="es" />

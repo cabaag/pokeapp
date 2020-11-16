@@ -109,6 +109,20 @@ exports[`<PokemonDetailsScreen /> matchs snapshot 1`] = `
               1
               kg
             </Styled(Text)>
+            <RowNB>
+              <View
+                key="1"
+                style={
+                  Object {
+                    "backgroundColor": "#AB1F23",
+                    "borderRadius": 50,
+                    "height": 10,
+                    "margin": 10,
+                    "width": 10,
+                  }
+                }
+              />
+            </RowNB>
           </ColumnNB>
         </RowNB>
         <RowNB>

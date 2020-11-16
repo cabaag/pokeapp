@@ -26,6 +26,7 @@ module.exports = {
   roots: ['./src'],
   testEnvironment: 'jsdom',
   moduleNameMapper: {
-    "^@component/(.*)$": "<rootDir>/src/$1",
+    "^@component/(.*)$": "<rootDir>/src/components/$1",
+    "^@screens/(.*)$": "<rootDir>/src/screens/$1",
   }
 };

@@ -1,28 +1,44 @@
-import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
-import MainScreen from '../screens/MainScreen/MainScreen';
-import PokemonDetailsScreen from '../screens/PokemonDetailsScreen/PokemonDetailsScreen';
-import { RootStackParamList } from '../types/Stacks';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Image } from 'react-native';
+import { enableScreens } from 'react-native-screens';
+import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
+import MainNavigator from './MainNavigator';
 
-const Stack = createStackNavigator<RootStackParamList>();
+enableScreens();
+const Drawer = createDrawerNavigator();
+
+// eslint-disable-next-line react/display-name
+const LogoTitle = memo(() => (
+  <Image
+    source={require('../assets/images/pokemon.png')}
+    style={{ width: 140, height: 50 }}
+  />
+))
 
 export default function RootNavigator(): React.ReactElement {
+  const { t } = useTranslation()
   return (
-    <Stack.Navigator
-      initialRouteName="MainScreen"
+    <Drawer.Navigator
+      initialRouteName="MainNavigator"
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
         headerStyle: {
           backgroundColor: '#3F51B5',
         },
         headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
+        // eslint-disable-next-line react/display-name
+        headerTitle: () => <LogoTitle />,
+        headerTitleAlign: 'center'
       }}
+
     >
-      <Stack.Screen component={MainScreen} name="MainScreen" />
-      <Stack.Screen component={PokemonDetailsScreen} name="PokemonDetailsScreen" />
-    </Stack.Navigator>
+      <Drawer.Screen component={MainNavigator} name="Pokemons" />
+      <Drawer.Screen component={MainNavigator} name={t('berries')} />
+      <Drawer.Screen component={SettingsScreen} name={t('settings')} />
+    </Drawer.Navigator>
+
   );
 }
+

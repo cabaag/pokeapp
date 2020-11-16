@@ -13,5 +13,7 @@
   "defense": "Defensa",
   "special-attack": "Ataque especial",
   "special-defense": "Defensa especial",
-  "hp": "Salud"
+  "hp": "Salud",
+  "berries": "Bayas",
+  "settings": "Configuración"
 }

@@ -2,29 +2,6 @@
 
 exports[`<MainScreen /> matchs snapshot 1`] = `
 <Styled(Container)>
-  <Styled(Header)>
-    <Styled(Body)
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <Image
-        source={1}
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "height": 60,
-            "width": 140,
-          }
-        }
-      />
-    </Styled(Body)>
-  </Styled(Header)>
   <Styled(Header)
     rounded={true}
     searchBar={true}
@@ -47,7 +24,11 @@ exports[`<MainScreen /> matchs snapshot 1`] = `
     </Styled(Button)>
   </Styled(Header)>
   <Styled(Content)>
-    <Memo(LangPicker) />
+    <Memo(Paginator)
+      count={0}
+      loading={false}
+      onChangePage={[Function]}
+    />
     <View
       style={
         Object {
@@ -61,11 +42,6 @@ exports[`<MainScreen /> matchs snapshot 1`] = `
           "width": 750,
         }
       }
-    />
-    <Memo(Paginator)
-      count={0}
-      loading={false}
-      onChangePage={[Function]}
     />
   </Styled(Content)>
 </Styled(Container)>

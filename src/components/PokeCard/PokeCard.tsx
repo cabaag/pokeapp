@@ -48,6 +48,11 @@ const PokeCard: React.FC<PokeCardProps> = ({ pokemon }: PokeCardProps) => {
               <Image source={{ uri: pokemon.sprites.front_default }} style={styles.sprite} />
               : <Spinner />
           }
+          <Text style={{ fontWeight: 'bold' }}>
+            # 
+            {' '}
+            {pokemon?.id}
+          </Text>
           <Text style={{ textTransform: 'capitalize' }}>
             {pokemon.name}
           </Text>

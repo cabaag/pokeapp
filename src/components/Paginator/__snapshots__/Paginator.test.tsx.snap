@@ -14,15 +14,18 @@ exports[`<Paginator /> matchs snapshot 1`] = `
   }
 >
   <Styled(Button)
+    bordered={true}
     disabled={true}
     onPress={[Function]}
-    test-id="prev"
+    test-id="first"
   >
-    <Styled(Text)>
-      previous
-    </Styled(Text)>
+    <Styled(Icon)
+      name="previous"
+      type="Foundation"
+    />
   </Styled(Button)>
   <Styled(Button)
+    bordered={false}
     disabled={true}
     key="0"
     onPress={[Function]}
@@ -33,6 +36,7 @@ exports[`<Paginator /> matchs snapshot 1`] = `
     </Styled(Text)>
   </Styled(Button)>
   <Styled(Button)
+    bordered={true}
     disabled={false}
     key="1"
     onPress={[Function]}
@@ -43,6 +47,7 @@ exports[`<Paginator /> matchs snapshot 1`] = `
     </Styled(Text)>
   </Styled(Button)>
   <Styled(Button)
+    bordered={true}
     disabled={false}
     key="2"
     onPress={[Function]}
@@ -53,6 +58,7 @@ exports[`<Paginator /> matchs snapshot 1`] = `
     </Styled(Text)>
   </Styled(Button)>
   <Styled(Button)
+    bordered={true}
     disabled={false}
     key="3"
     onPress={[Function]}
@@ -63,6 +69,7 @@ exports[`<Paginator /> matchs snapshot 1`] = `
     </Styled(Text)>
   </Styled(Button)>
   <Styled(Button)
+    bordered={true}
     disabled={false}
     key="4"
     onPress={[Function]}
@@ -73,13 +80,15 @@ exports[`<Paginator /> matchs snapshot 1`] = `
     </Styled(Text)>
   </Styled(Button)>
   <Styled(Button)
+    bordered={true}
     disabled={false}
     onPress={[Function]}
-    test-id="next"
+    test-id="last"
   >
-    <Styled(Text)>
-      next
-    </Styled(Text)>
+    <Styled(Icon)
+      name="next"
+      type="Foundation"
+    />
   </Styled(Button)>
 </View>
 `;

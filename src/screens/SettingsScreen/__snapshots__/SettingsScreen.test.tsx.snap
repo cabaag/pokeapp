@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SettingsScreen /> matchs snapshot 1`] = `
+<Styled(Content)
+  padder={true}
+>
+  <Styled(Body)>
+    <RowNB>
+      <Memo(LangPicker) />
+    </RowNB>
+  </Styled(Body)>
+</Styled(Content)>
+`;

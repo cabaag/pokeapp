@@ -94,9 +94,10 @@ export default function MainScreen(): React.ReactElement {
         </Button>
       </Header>
       <Content>
+        <Paginator count={count} loading={loading} onChangePage={handleChangePage} />
         <View style={styles.grid}>
           {
-            loading || pokemons.length ? (
+            loading && !pokemons.length ? (
               <Row style={{ justifyContent: 'center' }}>
                 <Spinner size={80} />
               </Row>
@@ -112,7 +113,6 @@ export default function MainScreen(): React.ReactElement {
                 )
           }
         </View>
-        <Paginator count={count} loading={loading} onChangePage={handleChangePage} />
       </Content>
     </Container>
   );

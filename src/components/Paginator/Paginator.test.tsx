@@ -44,25 +44,25 @@ describe('<Paginator />', () => {
     expect(onChangePage).toHaveBeenCalledTimes(1);
   })
 
-  it('should disable next button', () => {
+  it('should disable last button', () => {
     wrapper = setup({
       loading: true,
     });
-    const nextButton = wrapper.find("[test-id='next']")
-    expect(nextButton.prop('disabled')).toBeTruthy();
+    const lastButton = wrapper.find("[test-id='last']")
+    expect(lastButton.prop('disabled')).toBeTruthy();
   })
 
-  it('should fire prev changePage', () => {
+  it('should fire first changePage', () => {
     onChangePage.mockReset();
-    const prevButton = wrapper.find("[test-id='prev']")
+    const prevButton = wrapper.find("[test-id='first']")
     prevButton.simulate('press')
     expect(onChangePage).toHaveBeenCalledTimes(1);
   })
 
   it('should fire next changePage', () => {
     onChangePage.mockReset();
-    const nextButton = wrapper.find("[test-id='next']")
-    nextButton.simulate('press')
+    const lastButton = wrapper.find("[test-id='last']")
+    lastButton.simulate('press')
     expect(onChangePage).toHaveBeenCalledTimes(1);
   })
 

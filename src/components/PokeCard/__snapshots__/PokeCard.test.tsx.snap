@@ -38,6 +38,17 @@ exports[`<PokeCard /> matchs snapshot 1`] = `
       <Styled(Text)
         style={
           Object {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        #
+         
+        0
+      </Styled(Text)>
+      <Styled(Text)
+        style={
+          Object {
             "textTransform": "capitalize",
           }
         }

@@ -10,12 +10,8 @@ exports[`<LangPicker /> matchs snapshot 1`] = `
   }
   mode="dropdown"
   onValueChange={[Function]}
+  placeholder="select_lang"
   selectedValue="en"
-  style={
-    Object {
-      "color": "#000",
-    }
-  }
 >
   <Item
     label="english"

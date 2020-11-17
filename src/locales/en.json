@@ -3,6 +3,7 @@
   "previous": "Previous",
   "search": "Search",
   "select_lang": "Select your language",
+  "language": "Language",
   "english": "English",
   "spanish": "Spanish",
   "height": "Height",
@@ -15,5 +16,6 @@
   "special-defense": "Special defense",
   "hp": "HP",
   "berries": "Berries",
-  "settings": "Settings"
+  "settings": "Settings",
+  "ppp": "Pokemons per page"
 }

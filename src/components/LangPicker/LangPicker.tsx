@@ -19,7 +19,7 @@ const LangPicker: React.FC = () => {
 
   return (
     <Picker
-      iosHeader={t("select_lang")}
+      iosHeader={t("language")}
       iosIcon={(
         <Icon
           name="arrow-dropdown-circle"
@@ -27,7 +27,7 @@ const LangPicker: React.FC = () => {
       )}
       mode="dropdown"
       onValueChange={handleChangeLang}
-      placeholder={t("select_lang")}
+      placeholder={t("language")}
       selectedValue={language}
     >
       <Picker.Item label={t("english")} value="en" />

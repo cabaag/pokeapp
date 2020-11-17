@@ -8,6 +8,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Paginator from '../../components/Paginator/Paginator';
 import PokeCard from '../../components/PokeCard/PokeCard';
 import { Pokemon, PokemonListResponse } from '../../types/Pokemon';
+import * as SecureStore from 'expo-secure-store';
 
 const styles = StyleSheet.create({
   grid: {
@@ -30,13 +31,14 @@ const styles = StyleSheet.create({
 export default function MainScreen(): React.ReactElement {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const limit = 50;
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
+  const [limit, setLimit] = useState(50);
 
   const fetchList = useCallback((page: number) => {
+    console.log(limit);
     setPokemons([]);
     setLoading(true);
 
@@ -63,6 +65,7 @@ export default function MainScreen(): React.ReactElement {
   }, [])
 
   useEffect(() => {
+    SecureStore.getItemAsync('pokemonsPerPage').then(ppp => setLimit(+(ppp ?? 50)))
     fetchList(0);
   }, []);
 
@@ -96,7 +99,7 @@ export default function MainScreen(): React.ReactElement {
       {/* <Header>
       </Header> */}
       <Content>
-        <Paginator count={count} loading={loading} onChangePage={handleChangePage} />
+        <Paginator count={count} loading={loading} onChangePage={handleChangePage} limit={limit} />
         <View style={styles.grid}>
           {
             loading && !pokemons.length ? (

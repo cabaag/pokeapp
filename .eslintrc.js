@@ -26,6 +26,7 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    "no-use-before-define": ["error", { "variables": false }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', 'ts', 'tsx'] }],
     'react/jsx-sort-props': [1, { ignoreCase: true }],
     'global-require': 'off',
@@ -33,7 +34,8 @@ module.exports = {
       functions: true, classes: true, variables: false
     }],
     'react/jsx-props-no-spreading': 0,
-    'jsx-closing-bracket-location': [1, 'tag-aligned'],
+    'jsx-closing-bracket-location': [2, 'tag-aligned'],
+    "react/jsx-closing-bracket-location": [2, {"location": "tag-aligned"}],
     'import/no-unresolved': [2, { commonjs: true, amd: true, caseSensitive: true }],
     "import/extensions": [
       "error",

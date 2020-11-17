@@ -81,7 +81,7 @@ export default function MainScreen(): React.ReactElement {
 
   return (
     <Container>
-      <Header rounded searchBar>
+      <Header searchBar>
         <Item>
           <Icon name="ios-search" />
           <Input
@@ -93,6 +93,8 @@ export default function MainScreen(): React.ReactElement {
           <Text>{t('search')}</Text>
         </Button>
       </Header>
+      {/* <Header>
+      </Header> */}
       <Content>
         <Paginator count={count} loading={loading} onChangePage={handleChangePage} />
         <View style={styles.grid}>

@@ -4,18 +4,10 @@ import { Spinner } from 'native-base';
 import React from 'react';
 import PokemonDetailsScreen, { PokemonDetailsScreenProps } from './PokemonDetailsScreen';
 
-const goBack = jest.fn();
-
 jest.mock('@react-navigation/native', () => ({
   useNavigation: () => ({
-    goBack
+    setOptions: jest.fn()
   })
-}));
-
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
 }));
 
 const defaultProps: PokemonDetailsScreenProps = {
@@ -44,12 +36,6 @@ describe('<PokemonDetailsScreen />', () => {
   it('matchs snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  it('should go back', () => {
-    const backButton = wrapper.find("[data-test='goBack']")
-    backButton.simulate('press');
-    expect(goBack).toHaveBeenCalled();
-  })
 
   it('should render spinner', () => {
     wrapper = setup({

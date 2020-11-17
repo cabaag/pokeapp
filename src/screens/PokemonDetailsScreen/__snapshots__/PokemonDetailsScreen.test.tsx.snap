@@ -2,59 +2,6 @@
 
 exports[`<PokemonDetailsScreen /> matchs snapshot 1`] = `
 <Styled(Container)>
-  <Styled(Header)
-    style={
-      Object {
-        "flexDirection": "row",
-      }
-    }
-  >
-    <Styled(Left)
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Styled(Button)
-        data-test="goBack"
-        onPress={[Function]}
-        transparent={true}
-      >
-        <Styled(Icon)
-          name="arrow-back"
-        />
-      </Styled(Button)>
-    </Styled(Left)>
-    <Styled(Body)
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <Image
-        source={1}
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "height": 60,
-            "width": 140,
-          }
-        }
-      />
-    </Styled(Body)>
-    <Styled(Right)
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    />
-  </Styled(Header)>
   <Styled(Content)
     padder={true}
   >

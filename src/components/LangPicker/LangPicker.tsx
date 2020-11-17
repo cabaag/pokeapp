@@ -1,13 +1,19 @@
 import { Icon, Picker } from 'native-base';
-import React, { useCallback, useState, memo } from 'react';
+import React, { useCallback, useState, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import * as SecureStore from 'expo-secure-store';
 
 const LangPicker: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState(i18n.language);
 
+  useEffect(() => {
+    SecureStore.getItemAsync('language').then(lang => setLanguage(lang ?? language))
+  }, [])
+  
   const handleChangeLang = useCallback((lang) => {
     i18n.changeLanguage(lang);
+    SecureStore.setItemAsync('language', lang);
     setLanguage(lang);
   }, [])
 
@@ -23,8 +29,6 @@ const LangPicker: React.FC = () => {
       onValueChange={handleChangeLang}
       placeholder={t("select_lang")}
       selectedValue={language}
-      
-
     >
       <Picker.Item label={t("english")} value="en" />
       <Picker.Item label={t("spanish")} value="es" />

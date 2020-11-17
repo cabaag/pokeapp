@@ -1,22 +1,14 @@
 import { RouteProp, useNavigation } from '@react-navigation/native';
-import Axios from 'axios';
-import { Card, Col, Container, Content, Row, Text, Header, Button, Left, Icon, Body, Spinner, Right } from 'native-base';
+import { Body, Card, Col, Container, Content, Row, Spinner, Text } from 'native-base';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, StyleSheet, View } from 'react-native';
-import typesMapper from 'utils/typesMapper';
-import { Pokemon } from '../../types/Pokemon';
+import typesMapper from '../../utils/typesMapper';
 import { RootStackParamList } from '../../types/Stacks';
 
 type PokemonDetaulsScreenRouteProp = RouteProp<RootStackParamList, 'PokemonDetailsScreen'>;
 
 const styles = StyleSheet.create({
-  logo: {
-    height: 60,
-    width: 140,
-    flex: 1,
-    alignItems: 'center',
-  },
   sprite: {
     width: 150,
     height: 150
@@ -37,7 +29,6 @@ const styles = StyleSheet.create({
 
 })
 
-
 export interface PokemonDetailsScreenProps {
   route: PokemonDetaulsScreenRouteProp;
 }
@@ -46,22 +37,14 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
   ({ route }: PokemonDetailsScreenProps) => {
     const { t } = useTranslation();
     const navigation = useNavigation();
-
     const { pokemon } = route.params;
-
+    
+    navigation.setOptions({
+      title: pokemon?.name
+    })
+    
     return (
       <Container>
-        <Header style={{ flexDirection: 'row' }}>
-          <Left style={{ flex: 1 }}>
-            <Button data-test="goBack" onPress={() => navigation.goBack()} transparent>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
-          <Body style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Image source={require('../../assets/images/pokemon.png')} style={styles.logo} />
-          </Body>
-          <Right style={{ flex: 1 }} />
-        </Header>
         <Content padder>
           <Card>
             <Body style={{ alignItems: 'flex-start', paddingRight: 20, paddingLeft: 20 }}>

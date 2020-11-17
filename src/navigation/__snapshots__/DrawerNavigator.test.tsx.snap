@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DrawerNavigator /> match snapshot 1`] = `
+<DrawerNavigator
+  initialRouteName="Pomemons"
+  screenOptions={
+    Object {
+      "headerShown": true,
+      "headerStyle": Object {
+        "backgroundColor": "#3F51B5",
+      },
+      "headerTintColor": "#fff",
+      "headerTitle": [Function],
+      "headerTitleAlign": "center",
+    }
+  }
+>
+  <Screen
+    component={[Function]}
+    name="Pokemons"
+  />
+  <Screen
+    component={[Function]}
+    name="berries"
+  />
+  <Screen
+    component={
+      Object {
+        "$$typeof": Symbol(react.memo),
+        "compare": null,
+        "type": [Function],
+      }
+    }
+    name="settings"
+  />
+</DrawerNavigator>
+`;

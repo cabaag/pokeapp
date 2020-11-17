@@ -1,44 +1,36 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import React, { memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Image } from 'react-native';
-import { enableScreens } from 'react-native-screens';
-import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
-import MainNavigator from './MainNavigator';
+import React from 'react';
+import { createNativeStackNavigator } from 'react-native-screens/native-stack';
+import PokemonDetailsScreen from '../screens/PokemonDetailsScreen/PokemonDetailsScreen';
+import { RootStackParamList } from '../types/Stacks';
+import DrawerNavigator from './DrawerNavigator';
 
-enableScreens();
-const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-// eslint-disable-next-line react/display-name
-const LogoTitle = memo(() => (
-  <Image
-    source={require('../assets/images/pokemon.png')}
-    style={{ width: 140, height: 50 }}
-  />
-))
-
-export default function RootNavigator(): React.ReactElement {
-  const { t } = useTranslation()
+function RootNavigator(): React.ReactElement {
   return (
-    <Drawer.Navigator
-      initialRouteName="MainNavigator"
+    <Stack.Navigator
+      initialRouteName="Drawer"
       screenOptions={{
-        headerShown: true,
         headerStyle: {
           backgroundColor: '#3F51B5',
         },
         headerTintColor: '#fff',
-        // eslint-disable-next-line react/display-name
-        headerTitle: () => <LogoTitle />,
-        headerTitleAlign: 'center'
+        headerTranslucent: true,
+        title: '',
+        replaceAnimation: 'push',
       }}
-
     >
-      <Drawer.Screen component={MainNavigator} name="Pokemons" />
-      <Drawer.Screen component={MainNavigator} name={t('berries')} />
-      <Drawer.Screen component={SettingsScreen} name={t('settings')} />
-    </Drawer.Navigator>
-
-  );
+      <Stack.Screen
+        component={DrawerNavigator}
+        name="Drawer"
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen component={PokemonDetailsScreen} name="PokemonDetailsScreen" />
+    </Stack.Navigator>
+  )
 }
 
+
+export default RootNavigator;

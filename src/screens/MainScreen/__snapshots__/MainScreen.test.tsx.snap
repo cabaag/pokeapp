@@ -3,7 +3,6 @@
 exports[`<MainScreen /> matchs snapshot 1`] = `
 <Styled(Container)>
   <Styled(Header)
-    rounded={true}
     searchBar={true}
   >
     <Styled(Item)>

@@ -2,7 +2,7 @@
 
 exports[`<LangPicker /> matchs snapshot 1`] = `
 <Styled(PickerNB)
-  iosHeader="select_lang"
+  iosHeader="language"
   iosIcon={
     <Styled(Icon)
       name="arrow-dropdown-circle"
@@ -10,7 +10,7 @@ exports[`<LangPicker /> matchs snapshot 1`] = `
   }
   mode="dropdown"
   onValueChange={[Function]}
-  placeholder="select_lang"
+  placeholder="language"
   selectedValue="en"
 >
   <Item

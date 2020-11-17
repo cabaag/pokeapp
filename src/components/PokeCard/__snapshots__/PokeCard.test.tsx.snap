@@ -4,58 +4,70 @@ exports[`<PokeCard /> matchs snapshot 1`] = `
 <Styled(Card)
   style={
     Object {
-      "height": "100%",
-      "margin": 8,
+      "padding": 8,
     }
   }
 >
-  <Styled(CardItem)>
-    <Styled(Body)
-      style={
-        Object {
-          "alignContent": "center",
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
+  <Styled(Body)
+    style={
+      Object {
+        "alignContent": "center",
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": undefined,
+        "justifyContent": "center",
       }
-    >
-      <RowNB>
-        <View
-          key="1"
+    }
+  >
+    <ColumnNB>
+      <RowNB
+        style={
+          Object {
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Styled(Spinner) />
+      </RowNB>
+    </ColumnNB>
+    <ColumnNB>
+      <RowNB
+        style={
+          Object {
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Styled(Text)
           style={
             Object {
-              "backgroundColor": "#AB1F23",
-              "borderRadius": 50,
-              "height": 10,
-              "margin": 10,
-              "width": 10,
+              "fontWeight": "bold",
             }
           }
-        />
+        >
+          #
+           
+          0
+        </Styled(Text)>
       </RowNB>
-      <Styled(Spinner) />
-      <Styled(Text)
+      <RowNB
         style={
           Object {
-            "fontWeight": "bold",
+            "justifyContent": "center",
           }
         }
       >
-        #
-         
-        0
-      </Styled(Text)>
-      <Styled(Text)
-        style={
-          Object {
-            "textTransform": "capitalize",
+        <Styled(Text)
+          style={
+            Object {
+              "textTransform": "capitalize",
+            }
           }
-        }
-      >
-        test
-      </Styled(Text)>
-    </Styled(Body)>
-  </Styled(CardItem)>
+        >
+          test
+        </Styled(Text)>
+      </RowNB>
+    </ColumnNB>
+  </Styled(Body)>
 </Styled(Card)>
 `;

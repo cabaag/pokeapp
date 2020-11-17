@@ -1,20 +1,18 @@
-import { useNavigation } from '@react-navigation/native';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
-import { Button, Container, Content, Header, Icon, Input, Item, Row, Spinner, Text } from 'native-base';
-import React, { useCallback, useEffect, useState } from 'react';
+import { Button, Container, Content, Header, Icon, Input, Item, Row, Segment, Spinner, Text } from 'native-base';
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, RefreshControl, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as SecureStore from 'expo-secure-store';
 import Paginator from '../../components/Paginator/Paginator';
 import PokeCard from '../../components/PokeCard/PokeCard';
 import { Pokemon, PokemonListResponse } from '../../types/Pokemon';
-import * as SecureStore from 'expo-secure-store';
 
 const styles = StyleSheet.create({
   grid: {
     flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'flex-start',
     alignContent: 'stretch',
     alignItems: 'stretch',
@@ -26,23 +24,31 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 8,
   },
+  row: {
+    width: (Dimensions.get('window').width - 16),
+    flex: 1,
+    paddingBottom: 8,
+  }
 })
 
 export default function MainScreen(): React.ReactElement {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const [count, setCount] = useState(0);
+  const [page, setPage] = useState(0);
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const [search, setSearch] = useState('');
   const [limit, setLimit] = useState(50);
+  const [layout, setLayout] = useState('grid');
 
-  const fetchList = useCallback((page: number) => {
-    console.log(limit);
+  const fetchList = useCallback((newPage: number) => {
     setPokemons([]);
+    setPage(newPage);
     setLoading(true);
 
-    Axios.get<PokemonListResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${page * limit}`)
+    Axios.get<PokemonListResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${newPage * limit}`)
       .then(({ data }) => {
 
         setCount(data.count);
@@ -54,6 +60,7 @@ export default function MainScreen(): React.ReactElement {
             .then(({ data: pokemonData }) => {
               pokemons[index] = pokemonData as Pokemon;
               setPokemons([...pokemons])
+              setRefreshing(false);
             })
         })
         Promise.all(queries)
@@ -61,8 +68,25 @@ export default function MainScreen(): React.ReactElement {
           .finally(() => {
             setLoading(false)
           });
+
       })
   }, [])
+
+  const changeLayout = useCallback((newLayout: string) => {
+    setLayout(newLayout)
+  }, [])
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      // eslint-disable-next-line react/display-name
+      headerRight: () => (
+        <Segment>
+          <Button active={layout === 'grid'} first onPress={() => changeLayout('grid')}><Icon name="grid" /></Button>
+          <Button active={layout === 'list'} last onPress={() => changeLayout('list')}><Icon name="list" /></Button>
+        </Segment>
+      )
+    })
+  }, [navigation, layout]);
 
   useEffect(() => {
     SecureStore.getItemAsync('pokemonsPerPage').then(ppp => setLimit(+(ppp ?? 50)))
@@ -70,8 +94,8 @@ export default function MainScreen(): React.ReactElement {
   }, []);
 
 
-  const handleChangePage = useCallback((page) => {
-    fetchList(page);
+  const handleChangePage = useCallback((newPage) => {
+    fetchList(newPage);
   }, [])
 
   const handlePressPokemon = useCallback((pokemon: Pokemon) => {
@@ -81,6 +105,11 @@ export default function MainScreen(): React.ReactElement {
   const handleSearch = useCallback((newSearch: string) => {
     setSearch(newSearch)
   }, [])
+
+  const handleRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchList(page);
+  }, [page])
 
   return (
     <Container>
@@ -96,11 +125,21 @@ export default function MainScreen(): React.ReactElement {
           <Text>{t('search')}</Text>
         </Button>
       </Header>
-      {/* <Header>
-      </Header> */}
-      <Content>
-        <Paginator count={count} loading={loading} onChangePage={handleChangePage} limit={limit} />
-        <View style={styles.grid}>
+      <Content refreshControl={(
+        <RefreshControl
+          onRefresh={handleRefresh}
+          progressBackgroundColor="#fff"
+          refreshing={refreshing}
+        />
+      )}
+      >
+        <Paginator count={count} limit={limit} loading={loading} onChangePage={handleChangePage} />
+        <View style={{
+          ...styles.grid,
+          flexDirection: layout === 'grid' ? 'row' : 'column',
+          flexWrap: layout === 'grid' ? 'wrap' : 'nowrap'
+        }}
+        >
           {
             loading && !pokemons.length ? (
               <Row style={{ justifyContent: 'center' }}>
@@ -111,8 +150,12 @@ export default function MainScreen(): React.ReactElement {
                 .filter(p => p?.name.toLowerCase().includes(search.toLowerCase()))
                 .map(pokemon =>
                   (
-                    <TouchableOpacity key={pokemon?.name} onPress={() => handlePressPokemon(pokemon)} style={styles.col}>
-                      <PokeCard pokemon={pokemon} />
+                    <TouchableOpacity
+                      key={pokemon?.name}
+                      onPress={() => handlePressPokemon(pokemon)}
+                      style={layout === 'grid' ? styles.col : styles.row}
+                    >
+                      <PokeCard pokemon={pokemon} direction={layout === 'grid' ? 'column' : 'row'} />
                     </TouchableOpacity>
                   )
                 )

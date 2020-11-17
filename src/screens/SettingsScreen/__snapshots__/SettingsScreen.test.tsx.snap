@@ -1,63 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SettingsScreen /> matchs snapshot 1`] = `
-<Styled(Content)
-  padder={true}
->
-  <Styled(Body)>
-    <RowNB>
-      <Styled(Form)>
-        <Styled(Item)
-          picker={true}
+<Styled(Container)>
+  <Styled(Content)
+    padder={true}
+  >
+    <Styled(Form)>
+      <Styled(Item)
+        picker={true}
+      >
+        <Styled(Label)>
+          language
+        </Styled(Label)>
+        <Memo(LangPicker) />
+      </Styled(Item)>
+      <Styled(Item)
+        picker={true}
+      >
+        <Styled(Label)>
+          ppp
+        </Styled(Label)>
+        <Styled(PickerNB)
+          iosIcon={
+            <Styled(Icon)
+              name="arrow-down"
+            />
+          }
+          mode="dropdown"
+          onValueChange={[Function]}
+          placeholder="ppp"
+          placeholderIconColor="#007aff"
+          placeholderStyle={
+            Object {
+              "color": "#bfc6ea",
+            }
+          }
+          selectedValue={50}
+          style={
+            Object {
+              "color": "#000",
+              "width": undefined,
+            }
+          }
         >
-          <Memo(LangPicker) />
-        </Styled(Item)>
-        <Styled(Item)
-          picker={true}
-        >
-          <Styled(PickerNB)
-            iosIcon={
-              <Styled(Icon)
-                name="arrow-down"
-              />
-            }
-            mode="dropdown"
-            onValueChange={[Function]}
-            placeholder="Pokemons per page"
-            placeholderIconColor="#007aff"
-            placeholderStyle={
-              Object {
-                "color": "#bfc6ea",
-              }
-            }
-            selectedValue={50}
-            style={
-              Object {
-                "color": "#000",
-                "width": undefined,
-              }
-            }
-          >
-            <Item
-              label="30"
-              value="30"
-            />
-            <Item
-              label="50"
-              value="50"
-            />
-            <Item
-              label="70"
-              value="70"
-            />
-            <Item
-              label="100"
-              value="100"
-            />
-          </Styled(PickerNB)>
-        </Styled(Item)>
-      </Styled(Form)>
-    </RowNB>
-  </Styled(Body)>
-</Styled(Content)>
+          <Item
+            label="30"
+            value="30"
+          />
+          <Item
+            label="50"
+            value="50"
+          />
+          <Item
+            label="70"
+            value="70"
+          />
+          <Item
+            label="100"
+            value="100"
+          />
+        </Styled(PickerNB)>
+      </Styled(Item)>
+    </Styled(Form)>
+  </Styled(Content)>
+</Styled(Container)>
 `;

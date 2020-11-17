@@ -15,7 +15,6 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["src/*"],
       "tests": ["tests/*"],
       "@components/*": ["./src/components/*"],
       "@screens/*": ["./src/screens/*"],

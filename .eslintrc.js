@@ -57,7 +57,7 @@ module.exports = {
       },
     },
     "react": {
-      "version": "detect" // para detectar la versión de reactjs
+      "version": "detect"
     }
   }
 };

@@ -1,3 +1,5 @@
+import LogoTitle from 'components/LogoTitle/LogoTitle';
+import { Button, Icon, Segment, Text } from 'native-base';
 import React from 'react';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import PokemonDetailsScreen from '../screens/PokemonDetailsScreen/PokemonDetailsScreen';
@@ -13,10 +15,13 @@ function RootNavigator(): React.ReactElement {
       screenOptions={{
         headerStyle: {
           backgroundColor: '#3F51B5',
+          blurEffect: "extraLight"
         },
         headerTintColor: '#fff',
-        headerTranslucent: true,
         title: '',
+        headerTopInsetEnabled: false,
+        // eslint-disable-next-line react/display-name
+        headerCenter: () => <LogoTitle />,
         replaceAnimation: 'push',
       }}
     >
@@ -24,10 +29,13 @@ function RootNavigator(): React.ReactElement {
         component={DrawerNavigator}
         name="Drawer"
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
-      <Stack.Screen component={PokemonDetailsScreen} name="PokemonDetailsScreen" />
+      <Stack.Screen
+        component={PokemonDetailsScreen}
+        name="PokemonDetailsScreen"
+      />
     </Stack.Navigator>
   )
 }

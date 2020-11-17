@@ -1,6 +1,6 @@
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { Body, Card, Col, Container, Content, Row, Spinner, Text } from 'native-base';
-import * as React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, StyleSheet, View } from 'react-native';
 import typesMapper from '../../utils/typesMapper';
@@ -35,14 +35,17 @@ export interface PokemonDetailsScreenProps {
 
 const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
   ({ route }: PokemonDetailsScreenProps) => {
-    const { t } = useTranslation();
     const navigation = useNavigation();
+    const { t } = useTranslation();
     const { pokemon } = route.params;
-    
-    navigation.setOptions({
-      title: pokemon?.name
-    })
-    
+
+    useLayoutEffect(() => {
+      navigation.setOptions({
+        title: pokemon?.name
+      })
+    }, [navigation, pokemon]);
+
+
     return (
       <Container>
         <Content padder>
@@ -50,7 +53,6 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
             <Body style={{ alignItems: 'flex-start', paddingRight: 20, paddingLeft: 20 }}>
               <Row>
                 <Col>
-
                   {
                     pokemon?.sprites?.front_default ?
                       <Image source={{ uri: pokemon?.sprites.front_default }} style={styles.sprite} />

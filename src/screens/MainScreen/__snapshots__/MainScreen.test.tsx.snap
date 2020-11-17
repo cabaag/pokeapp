@@ -22,9 +22,18 @@ exports[`<MainScreen /> matchs snapshot 1`] = `
       </Styled(Text)>
     </Styled(Button)>
   </Styled(Header)>
-  <Styled(Content)>
+  <Styled(Content)
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressBackgroundColor="#fff"
+        refreshing={false}
+      />
+    }
+  >
     <Memo(Paginator)
       count={0}
+      limit={50}
       loading={false}
       onChangePage={[Function]}
     />

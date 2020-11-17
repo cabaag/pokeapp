@@ -1,6 +1,5 @@
 import { Button, Icon, Text } from 'native-base';
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -19,6 +18,7 @@ export interface PaginatorProps {
   loading: boolean;
   onChangePage: (page: number) => void;
   interval?: number;
+  limit?: number;
 }
 
 const Paginator: React.FC<PaginatorProps> = ({
@@ -26,6 +26,7 @@ const Paginator: React.FC<PaginatorProps> = ({
   loading,
   onChangePage,
   interval = 5,
+  limit = 50,
 }: PaginatorProps) => {
 
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -38,7 +39,7 @@ const Paginator: React.FC<PaginatorProps> = ({
   }, [onChangePage]);
 
   useEffect(() => {
-    setLastPage(Math.floor(count / 50))
+    setLastPage(Math.floor(count / limit))
   }, [count])
 
   const renderButtons = useCallback(() => {

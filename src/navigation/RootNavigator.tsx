@@ -1,7 +1,6 @@
-import LogoTitle from 'components/LogoTitle/LogoTitle';
-import { Button, Icon, Segment, Text } from 'native-base';
 import React from 'react';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
+import LogoTitle from '../components/LogoTitle/LogoTitle';
 import PokemonDetailsScreen from '../screens/PokemonDetailsScreen/PokemonDetailsScreen';
 import { RootStackParamList } from '../types/Stacks';
 import DrawerNavigator from './DrawerNavigator';

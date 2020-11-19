@@ -1,10 +1,13 @@
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { Body, Card, Col, Container, Content, Row, Spinner, Text } from 'native-base';
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, StyleSheet, View } from 'react-native';
+import Slider from '@react-native-community/slider';
 import typesMapper from '../../utils/typesMapper';
 import { RootStackParamList } from '../../types/Stacks';
+import { retrievePokemon } from '../../services/Pokemon';
+import { Pokemon } from '../../types/Pokemon';
 
 type PokemonDetaulsScreenRouteProp = RouteProp<RootStackParamList, 'PokemonDetailsScreen'>;
 
@@ -37,7 +40,15 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
   ({ route }: PokemonDetailsScreenProps) => {
     const navigation = useNavigation();
     const { t } = useTranslation();
-    const { pokemon } = route.params;
+    const { pokemonName } = route.params;
+    const [loading, setLoading] = useState(true)
+    const [pokemon, setPokemon] = useState<Pokemon>();
+
+    useEffect(() => {
+      retrievePokemon(pokemonName).then(setPokemon).finally(() => {
+        setLoading(false)
+      })
+    }, [])
 
     useLayoutEffect(() => {
       navigation.setOptions({
@@ -53,10 +64,11 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
             <Body style={{ alignItems: 'flex-start', paddingRight: 20, paddingLeft: 20 }}>
               <Row>
                 <Col>
+                  {loading && <Spinner />}
                   {
-                    pokemon?.sprites?.front_default ?
-                      <Image source={{ uri: pokemon?.sprites.front_default }} style={styles.sprite} />
-                      : <Spinner />
+                    !loading && pokemon?.sprites?.front_default ?
+                      <Image source={{ uri: pokemon.sprites.front_default }} style={styles.sprite} />
+                      : null
                   }
                 </Col>
                 <Col style={{ alignContent: 'flex-start', alignItems: 'flex-start', paddingTop: 20 }}>
@@ -71,14 +83,14 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
                     {t('height')}
                     :
                     {' '}
-                    {pokemon?.height / 10}
+                    {(pokemon?.height ?? 1) / 10}
                     m
                   </Text>
                   <Text>
                     {t('weight')}
                     :
                     {' '}
-                    {pokemon?.weight / 10}
+                    {(pokemon?.weight ?? 1) / 10}
                     kg
                   </Text>
                   <Row>
@@ -107,15 +119,23 @@ const PokemonDetailsScreen: React.FC<PokemonDetailsScreenProps> =
                 {
                   pokemon?.stats.map(stat => (
                     <Col key={stat.stat.name}>
-                      <Row>
-                        <Text style={{ fontWeight: 'bold' }}>
+                      <Row style={{ alignItems: 'center' }}>
+                        <Text style={{ fontWeight: 'bold', width: 130 }}>
                           {t(stat.stat.name)}
-                        </Text>
-                        <Text>
-                          :
                           {' '}
-                          {stat.base_stat}
+                          :
+                          {stat?.base_stat}
                         </Text>
+                        <Slider
+                          maximumTrackTintColor="#3F51B5"
+                          maximumValue={140}
+                          minimumTrackTintColor="#3F51B5"
+                          minimumValue={0}
+                          style={{ width: 230, height: 40 }}
+                          thumbTintColor='#3F51B5'
+                          value={stat?.base_stat}
+
+                        />
                       </Row>
                     </Col>
                   ))

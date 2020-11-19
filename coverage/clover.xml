@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1605588185885" clover="3.2.0">
-  <project timestamp="1605588185885" name="All files">
-    <metrics statements="215" coveredstatements="133" conditionals="44" coveredconditionals="19" methods="54" coveredmethods="17" elements="313" coveredelements="169" complexity="0" loc="215" ncloc="215" packages="11" files="16" classes="16"/>
+<coverage generated="1605590109035" clover="3.2.0">
+  <project timestamp="1605590109035" name="All files">
+    <metrics statements="216" coveredstatements="134" conditionals="44" coveredconditionals="19" methods="54" coveredmethods="17" elements="314" coveredelements="170" complexity="0" loc="216" ncloc="216" packages="11" files="16" classes="16"/>
     <package name="components.LangPicker">
       <metrics statements="15" coveredstatements="14" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="2"/>
       <file name="LangPicker.tsx" path="/mnt/d/caba9/Documents/www/pokeapp/src/components/LangPicker/LangPicker.tsx">
@@ -235,26 +235,27 @@
       </file>
     </package>
     <package name="screens.PokemonDetailsScreen">
-      <metrics statements="17" coveredstatements="16" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
+      <metrics statements="18" coveredstatements="17" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
       <file name="PokemonDetailsScreen.tsx" path="/mnt/d/caba9/Documents/www/pokeapp/src/screens/PokemonDetailsScreen/PokemonDetailsScreen.tsx">
-        <metrics statements="17" coveredstatements="16" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
+        <metrics statements="18" coveredstatements="17" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="38" count="3" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
         <line num="39" count="3" type="stmt"/>
         <line num="40" count="3" type="stmt"/>
-        <line num="42" count="3" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="49" count="3" type="stmt"/>
-        <line num="86" count="2" type="stmt"/>
-        <line num="109" count="2" type="stmt"/>
-        <line num="131" count="1" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="110" count="2" type="stmt"/>
+        <line num="140" count="1" type="stmt"/>
       </file>
     </package>
     <package name="screens.SettingsScreen">

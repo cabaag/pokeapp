@@ -1,12 +1,12 @@
-type NamedAPIResource = {
+export type NamedAPIResource = {
   name: string;
   url?: string;
 };
 
 export type PokemonListResponse = {
   count: number;
-  next: string;
-  previous: string;
+  next?: string;
+  previous?: string;
   results: NamedAPIResource[];
 };
 

@@ -124,21 +124,43 @@ exports[`<PokemonDetailsScreen /> matchs snapshot 1`] = `
           <ColumnNB
             key="stat test"
           >
-            <RowNB>
+            <RowNB
+              style={
+                Object {
+                  "alignItems": "center",
+                }
+              }
+            >
               <Styled(Text)
                 style={
                   Object {
                     "fontWeight": "bold",
+                    "width": 130,
                   }
                 }
               >
                 stat test
-              </Styled(Text)>
-              <Styled(Text)>
-                :
                  
+                :
                 10
               </Styled(Text)>
+              <ForwardRef(SliderComponent)
+                disabled={false}
+                inverted={false}
+                maximumTrackTintColor="#3F51B5"
+                maximumValue={140}
+                minimumTrackTintColor="#3F51B5"
+                minimumValue={0}
+                step={0}
+                style={
+                  Object {
+                    "height": 40,
+                    "width": 230,
+                  }
+                }
+                thumbTintColor="#3F51B5"
+                value={10}
+              />
             </RowNB>
           </ColumnNB>
         </ColumnNB>

@@ -1,11 +1,12 @@
 import { Body, Card, Col, Row, Spinner, Text } from 'native-base';
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import typesMapper from 'utils/typesMapper';
+import { retrievePokemon } from '../../services/Pokemon';
 import { Pokemon } from '../../types/Pokemon';
+import typesMapper from '../../utils/typesMapper';
 
 export interface PokeCardProps {
-  pokemon: Pokemon;
+  pokemonName: string;
   direction: 'column' | 'row';
 }
 
@@ -28,7 +29,17 @@ const styles = StyleSheet.create({
   }
 })
 
-const PokeCard: React.FC<PokeCardProps> = ({ pokemon, direction }: PokeCardProps) => {
+const PokeCard: React.FC<PokeCardProps> = ({ pokemonName, direction }: PokeCardProps) => {
+
+  const [loading, setLoading] = useState(true)
+  const [pokemon, setPokemon] = useState<Pokemon>();
+
+  useEffect(() => {
+    retrievePokemon(pokemonName).then(setPokemon).finally(() => {
+      setLoading(false)
+    })
+  }, [])
+
   const renderTypes = () => {
     return pokemon?.types?.map(type => (
       <View
@@ -41,7 +52,7 @@ const PokeCard: React.FC<PokeCardProps> = ({ pokemon, direction }: PokeCardProps
     ))
   }
   return (
-    <Card style={{ padding: 8 }}>
+    <Card style={{ padding: 8, height: '100%' }}>
       <Body style={{ ...styles.body, flexDirection: direction }}>
         <Col>
           {direction === 'column' && (
@@ -50,10 +61,11 @@ const PokeCard: React.FC<PokeCardProps> = ({ pokemon, direction }: PokeCardProps
             </Row>
           )}
           <Row style={{ justifyContent: 'center' }}>
+            {loading && <Spinner />}
             {
-              pokemon?.sprites?.front_default ?
+              !loading && pokemon?.sprites?.front_default ?
                 <Image source={{ uri: pokemon.sprites.front_default }} style={styles.sprite} />
-                : <Spinner />
+                : null
             }
           </Row>
         </Col>
@@ -63,16 +75,16 @@ const PokeCard: React.FC<PokeCardProps> = ({ pokemon, direction }: PokeCardProps
               {renderTypes()}
             </Row>
           )}
-          <Row style={{ justifyContent: direction === 'row' ? 'flex-start' : 'center'}}>
+          <Row style={{ justifyContent: direction === 'row' ? 'flex-start' : 'center' }}>
             <Text style={{ fontWeight: 'bold' }}>
               #
               {' '}
               {pokemon?.id}
             </Text>
           </Row>
-          <Row style={{ justifyContent: direction === 'row' ? 'flex-start' : 'center'}}>
+          <Row style={{ justifyContent: direction === 'row' ? 'flex-start' : 'center' }}>
             <Text style={{ textTransform: 'capitalize' }}>
-              {pokemon.name}
+              {pokemonName}
             </Text>
           </Row>
 

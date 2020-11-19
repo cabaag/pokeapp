@@ -40,7 +40,7 @@ const Paginator: React.FC<PaginatorProps> = ({
 
   useEffect(() => {
     setLastPage(Math.floor(count / limit))
-  }, [count])
+  }, [count, limit])
 
   const renderButtons = useCallback(() => {
     let minPage: number = Math.min(...[

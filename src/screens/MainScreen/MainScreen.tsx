@@ -1,14 +1,14 @@
-import { DrawerActions, useNavigation } from '@react-navigation/native';
-import Axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import * as SecureStore from 'expo-secure-store';
 import { Button, Container, Content, Header, Icon, Input, Item, Row, Segment, Spinner, Text } from 'native-base';
 import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, RefreshControl, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import * as SecureStore from 'expo-secure-store';
 import Paginator from '../../components/Paginator/Paginator';
 import PokeCard from '../../components/PokeCard/PokeCard';
-import { Pokemon, PokemonListResponse } from '../../types/Pokemon';
+import { retrievePokemons } from '../../services/Pokemon';
+import { Pokemon } from '../../types/Pokemon';
 
 const styles = StyleSheet.create({
   grid: {
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     width: (Dimensions.get('window').width - 16) / 3,
     flex: 1,
     paddingBottom: 8,
+    height: '100%'
   },
   row: {
     width: (Dimensions.get('window').width - 16),
@@ -36,7 +37,7 @@ export default function MainScreen(): React.ReactElement {
   const navigation = useNavigation();
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [pokemons, setPokemons] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [search, setSearch] = useState('');
@@ -48,28 +49,16 @@ export default function MainScreen(): React.ReactElement {
     setPage(newPage);
     setLoading(true);
 
-    Axios.get<PokemonListResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${newPage * limit}`)
-      .then(({ data }) => {
-
-        setCount(data.count);
-        setPokemons(data.results as Pokemon[])
-        setLoading(false)
-
-        const queries = data.results.map((p, index) => {
-          return Axios.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${p.name}`)
-            .then(({ data: pokemonData }) => {
-              pokemons[index] = pokemonData as Pokemon;
-              setPokemons([...pokemons])
-              setRefreshing(false);
-            })
-        })
-        Promise.all(queries)
-          .catch(e => console.log(e))
-          .finally(() => {
-            setLoading(false)
-          });
-
+    retrievePokemons(limit, newPage * limit)
+      .then(result => {
+        setCount(result.count);
+        setPokemons(result.results);
       })
+      .catch(e => console.log(e))
+      .finally(() => {
+        setLoading(false)
+      })
+
   }, [])
 
   const changeLayout = useCallback((newLayout: string) => {
@@ -99,7 +88,7 @@ export default function MainScreen(): React.ReactElement {
   }, [])
 
   const handlePressPokemon = useCallback((pokemon: Pokemon) => {
-    navigation.navigate('PokemonDetailsScreen', { pokemon });
+    navigation.navigate('PokemonDetailsScreen', { pokemonName: pokemon.name });
   }, [])
 
   const handleSearch = useCallback((newSearch: string) => {
@@ -155,7 +144,7 @@ export default function MainScreen(): React.ReactElement {
                       onPress={() => handlePressPokemon(pokemon)}
                       style={layout === 'grid' ? styles.col : styles.row}
                     >
-                      <PokeCard pokemon={pokemon} direction={layout === 'grid' ? 'column' : 'row'} />
+                      <PokeCard direction={layout === 'grid' ? 'column' : 'row'} pokemonName={pokemon.name} />
                     </TouchableOpacity>
                   )
                 )
